@@ -1,5 +1,8 @@
+
+import { useRouter } from "./shared/hooks";
+
 function App() {
-  return <div></div>;
+  return <div>{useRouter()}</div>;
 }
 
 export default App;

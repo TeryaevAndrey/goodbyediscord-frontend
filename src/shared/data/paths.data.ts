@@ -1,6 +1,8 @@
 import { lazily } from "react-lazily";
 
-const { SignInPage } = lazily(() => import("@/pages/auth"));
+const { SignInPage, SignUpPage, PasswordRecoveryPage } = lazily(
+  () => import("@/pages/auth")
+);
 
 export const paths = {
   auth: {
@@ -10,9 +12,11 @@ export const paths = {
     },
     signup: {
       path: "/auth/sign-up",
+      element: SignUpPage,
     },
     password_recovery: {
       path: "/auth/password-recovery",
+      element: PasswordRecoveryPage,
     },
   },
 };
