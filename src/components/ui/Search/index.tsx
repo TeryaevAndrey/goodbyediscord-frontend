@@ -31,7 +31,7 @@ interface Props
 export const Search: FC<Props> = ({ className, variant, sizes, ...props }) => {
   return (
     <label className={cn(variants({ variant, sizes, className }))}>
-      <input type="text" className="grow" {...props} />
+      <input type="text" placeholder="Search..." className="grow" {...props} />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 16 16"
