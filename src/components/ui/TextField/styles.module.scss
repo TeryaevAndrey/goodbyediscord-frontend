@@ -1,0 +1,23 @@
+.root {
+  @apply input input-bordered w-full;
+}
+
+.small {
+  @apply input-sm;
+}
+
+.average {
+  @apply input-md;
+}
+
+.big {
+  @apply input-lg;
+}
+
+.success {
+  @apply input-success;
+}
+
+.error {
+  @apply input-error;
+}
