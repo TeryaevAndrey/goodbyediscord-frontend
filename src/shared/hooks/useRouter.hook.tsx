@@ -7,6 +7,7 @@ import { Suspense } from "react";
 export const useRouter = () => {
   const { isAuth } = useAppSelector(user);
   const authPaths = Object.entries(paths.auth);
+  const mainPaths = Object.entries(paths.main);
 
   if (!isAuth) {
     return (
@@ -30,5 +31,23 @@ export const useRouter = () => {
     );
   }
 
-  return <Routes></Routes>;
+  return (
+    <Routes>
+      {mainPaths.map((path, index) => {
+        const Page = path[1].element;
+
+        return (
+          <Route
+            key={index}
+            path={path[1].path}
+            element={
+              <Suspense>
+                <Page />
+              </Suspense>
+            }
+          />
+        );
+      })}
+    </Routes>
+  );
 };
