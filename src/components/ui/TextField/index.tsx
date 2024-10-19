@@ -1,6 +1,6 @@
 import { cva, VariantProps } from "class-variance-authority";
 import styles from "./styles.module.scss";
-import { DetailedHTMLProps, FC, InputHTMLAttributes } from "react";
+import { DetailedHTMLProps, FC, forwardRef, InputHTMLAttributes } from "react";
 import { cn } from "@/shared/utils";
 
 const variants = cva(styles.root, {
@@ -26,15 +26,16 @@ interface Props
     >,
     VariantProps<typeof variants> {}
 
-export const TextField: FC<Props> = ({
-  className,
-  variant,
-  sizes,
-  ...props
-}) => {
-  return (
-    <input className={cn(variants({ variant, sizes, className }))} {...props} />
-  );
-};
+export const TextField: FC<Props> = forwardRef(
+  ({ className, variant, sizes, ...props }, ref) => {
+    return (
+      <input
+        className={cn(variants({ variant, sizes, className }))}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
 
 export default TextField;

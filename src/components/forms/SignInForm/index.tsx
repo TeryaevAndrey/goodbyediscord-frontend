@@ -1,4 +1,5 @@
-import { Button, TextField } from "@/components/ui";
+import { Button, FormControl, TextField } from "@/components/ui";
+import { FormControlError } from "@/components/ui/FormControl/components";
 import { PropsWithClassName } from "@/shared/types";
 import { SignInFormData } from "@/shared/types/auth.types";
 import { cn } from "@/shared/utils";
@@ -20,24 +21,39 @@ export const SignInForm: FC<PropsWithClassName> = ({ className }) => {
   return (
     <form className={cn("sm:min-w-[250px]", className)} onSubmit={formHandler}>
       <div className="flex flex-col gap-4">
-        <TextField
-          {...register("email", {
-            required: {
-              value: true,
-              message: "Поле обязательно для заполнения",
-            },
-          })}
-          placeholder="Email"
-        />
-        <TextField
-          {...register("password", {
-            required: {
-              value: true,
-              message: "Поле обязательно для заполнения",
-            },
-          })}
-          placeholder="Password"
-        />
+        <FormControl>
+          <TextField
+            {...register("email", {
+              required: {
+                value: true,
+                message: "Поле обязательно для заполнения",
+              },
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: "Entered value does not match email format",
+              },
+            })}
+            placeholder="Email"
+          />
+          {errors?.email?.message && (
+            <FormControlError>{errors.email.message}</FormControlError>
+          )}
+        </FormControl>
+        <FormControl>
+          <TextField
+            {...register("password", {
+              required: {
+                value: true,
+                message: "Поле обязательно для заполнения",
+              },
+            })}
+            placeholder="Password"
+          />
+
+          {errors?.password?.message && (
+            <FormControlError>{errors.password.message}</FormControlError>
+          )}
+        </FormControl>
       </div>
 
       <Button className="mt-6">Войти</Button>
