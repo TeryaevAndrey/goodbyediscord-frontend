@@ -17,6 +17,11 @@ const variants = cva(styles.root, {
       big: styles.big,
     },
   },
+
+  defaultVariants: {
+    variant: "default",
+    sizes: "average",
+  },
 });
 
 interface Props

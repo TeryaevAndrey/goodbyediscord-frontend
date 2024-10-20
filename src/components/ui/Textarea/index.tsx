@@ -17,6 +17,11 @@ const variants = cva(styles.root, {
       big: styles.big,
     },
   },
+
+  defaultVariants: {
+    variant: "default",
+    sizes: "average",
+  },
 });
 
 interface Props
@@ -26,7 +31,12 @@ interface Props
     >,
     VariantProps<typeof variants> {}
 
-export const Textarea: FC<Props> = ({ className, variant, sizes, ...props }) => {
+export const Textarea: FC<Props> = ({
+  className,
+  variant,
+  sizes,
+  ...props
+}) => {
   return (
     <textarea
       className={cn(variants({ variant, sizes, className }))}
