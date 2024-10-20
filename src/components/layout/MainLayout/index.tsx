@@ -4,6 +4,7 @@ import { MainComponentProps } from "@/shared/types";
 import { cn } from "@/shared/utils";
 import { Sidebar } from "../Sidebar";
 import { UserSidebar } from "../Sidebar/components";
+import { ChatBox } from "@/components/widgets";
 
 export const MainLayout: FC<MainComponentProps> = ({ children, className }) => {
   return (
@@ -12,6 +13,8 @@ export const MainLayout: FC<MainComponentProps> = ({ children, className }) => {
       <Sidebar>
         <UserSidebar />
       </Sidebar>
+
+      <ChatBox />
 
       {children}
     </div>
