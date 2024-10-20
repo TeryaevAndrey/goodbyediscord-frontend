@@ -1,4 +1,3 @@
-
 import { useRouter } from "./shared/hooks";
 
 function App() {

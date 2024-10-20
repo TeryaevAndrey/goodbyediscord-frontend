@@ -5,7 +5,14 @@ export const UserSidebar = () => {
   return (
     <div>
       <div className="mx-4 flex flex-col gap-4">
-        <Button sizes="small">Добавить друга</Button>
+        <Button
+          sizes="small"
+          onClick={() =>
+            document.getElementById("add_friend_modal")?.showModal()
+          }
+        >
+          Добавить друга
+        </Button>
         <Search />
       </div>
 
