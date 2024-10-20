@@ -1,0 +1,95 @@
+/* styles.module.scss */
+$colors: (
+  purple: #241379,
+  medium-blue: #2185bf,
+  light-blue: #1fbce1,
+  red: #b62f56,
+  orange: #d5764c,
+  yellow: #ffd53e,
+  cyan: #78ffba,
+  light-green: #98fd85,
+  lime: #befb46,
+  magenta: #6c046c,
+  lightish-red: #f04c81,
+  pink: #ff4293,
+);
+
+.authBg {
+  background: radial-gradient(circle, #24246e, #06051f);
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.figure,
+.figure::before,
+.figure::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.9;
+  transform-origin: top;
+  transition: all 5s linear;
+}
+
+// Функции для генерации случайных значений
+@function random-num($min, $max) {
+  @return floor(random() * ($max - $min) + $min);
+}
+
+@function random-calc($number) {
+  $max: 100 - $number;
+  $min: $number * -1;
+  @return random-num($min, $max);
+}
+
+// Генерация классов для каждого цвета
+@each $color-name, $color-hex in $colors {
+  $size: random-num(5, 50) + px;
+
+  .#{$color-name} {
+    animation: #{$color-name} 30s linear alternate infinite;
+    border: 2px solid #{$color-hex};
+    border-radius: 100%;
+    width: $size;
+    height: $size;
+    transform: translate3d(random(100) + vw, random(100) + vh, 0);
+    z-index: random(12);
+  }
+
+  .#{$color-name}::before,
+  .#{$color-name}::after {
+    border: 2px solid #{$color-hex};
+    background: #{$color-hex};
+    width: random-num(5, 50) + px;
+    height: random-num(5, 50) + px;
+    animation: #{$color-name}-pseudo 15s linear alternate infinite;
+    transform: translate3d(random-calc(50) + vw, random-calc(50) + vh, 0)
+      rotate(random(360) + deg);
+  }
+
+  @keyframes #{$color-name} {
+    50% {
+      transform: translate3d(random(100) + vw, random(100) + vh, 0);
+    }
+    100% {
+      transform: translate3d(random(100) + vw, random(100) + vh, 0);
+    }
+  }
+
+  @keyframes #{$color-name}-pseudo {
+    33% {
+      transform: translate3d(random-calc(50) + vw, random-calc(50) + vh, 0)
+        rotate(random(360) + deg);
+    }
+    100% {
+      transform: translate3d(random-calc(100) + vw, random-calc(100) + vh, 0)
+        rotate(random(360) + deg);
+    }
+  }
+}

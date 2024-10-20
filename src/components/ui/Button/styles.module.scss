@@ -1,0 +1,19 @@
+.root {
+  @apply btn w-full;
+}
+
+.primary {
+  @apply btn-primary;
+}
+
+.secondary {
+  @apply btn-secondary;
+}
+
+.small {
+  @apply btn-sm;
+}
+
+.big {
+  @apply btn-lg;
+}
