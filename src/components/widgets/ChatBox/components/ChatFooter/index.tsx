@@ -8,7 +8,7 @@ import { TiAttachment } from "react-icons/ti";
 
 export const ChatFooter: FC<PropsWithClassName> = ({ className }) => {
   return (
-    <div className={cn("flex items-center gap-2 pb-8 px-6", className)}>
+    <div className={cn("flex items-center gap-2 p-6", className)}>
       <Button mode="square" variant="transparent">
         <TiAttachment className="fill-base-content" size={24} />
       </Button>
