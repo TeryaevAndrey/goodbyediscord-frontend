@@ -33,7 +33,13 @@ export const SecondarySidebar = () => {
           <Channel />
         </Button>
 
-        <Button variant="transparent" mode="square">
+        <Button
+          variant="transparent"
+          mode="square"
+          onClick={() =>
+            document.getElementById("add_channel_modal")?.showModal()
+          }
+        >
           <IoIosAdd className="fill-base-content" size={28} />
         </Button>
       </Channels>

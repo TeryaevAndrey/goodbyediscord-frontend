@@ -5,7 +5,7 @@ import { cn } from "@/shared/utils";
 import { Sidebar } from "../Sidebar";
 import { UserSidebar } from "../Sidebar/components";
 import { ChatBox } from "@/components/widgets";
-import { AddFriendModal } from "@/components/modals";
+import { AddChannelModal, AddFriendModal } from "@/components/modals";
 
 export const MainLayout: FC<MainComponentProps> = ({ children, className }) => {
   return (
@@ -20,6 +20,7 @@ export const MainLayout: FC<MainComponentProps> = ({ children, className }) => {
       {children}
 
       <AddFriendModal />
+      <AddChannelModal />
     </div>
   );
 };

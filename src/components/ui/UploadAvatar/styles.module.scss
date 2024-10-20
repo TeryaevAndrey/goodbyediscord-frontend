@@ -1,0 +1,11 @@
+.root {
+  @apply relative rounded-full overflow-hidden min-w-14 w-14 h-14 cursor-pointer;
+
+  .hoverBlock {
+    @apply absolute inset-0 w-full h-full flex justify-center items-center bg-black/40 opacity-0 ease-linear duration-200;
+  }
+
+  &:hover .hoverBlock {
+    @apply opacity-100;
+  }
+}
