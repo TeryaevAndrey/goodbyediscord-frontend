@@ -4,6 +4,8 @@ const { SignInPage, SignUpPage, PasswordRecoveryPage } = lazily(
   () => import("@/pages/auth")
 );
 
+const { HomePage } = lazily(() => import("@/pages"));
+
 export const paths = {
   auth: {
     signin: {
@@ -17,6 +19,13 @@ export const paths = {
     password_recovery: {
       path: "/auth/password-recovery",
       element: PasswordRecoveryPage,
+    },
+  },
+
+  main: {
+    home: {
+      path: "/",
+      element: HomePage,
     },
   },
 };

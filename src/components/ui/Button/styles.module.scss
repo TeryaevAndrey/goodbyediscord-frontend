@@ -10,10 +10,22 @@
   @apply btn-secondary;
 }
 
+.transparent {
+  @apply border-none;
+}
+
 .small {
   @apply btn-sm;
 }
 
+.average {
+  @apply btn-md;
+}
+
 .big {
   @apply btn-lg;
+}
+
+.square {
+  @apply btn-square;
 }

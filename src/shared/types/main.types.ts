@@ -11,3 +11,5 @@ export type PropsWithChildren<T = unknown> = T & {
 export type MainComponentProps<T = unknown> = T &
   PropsWithClassName &
   PropsWithChildren;
+
+export type Themes = "dark" | "light";

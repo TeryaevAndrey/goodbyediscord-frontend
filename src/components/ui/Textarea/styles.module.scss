@@ -1,0 +1,23 @@
+.root {
+  @apply textarea textarea-bordered w-full;
+}
+
+.small {
+  @apply textarea-sm;
+}
+
+.average {
+  @apply textarea-md;
+}
+
+.big {
+  @apply textarea-lg;
+}
+
+.success {
+  @apply textarea-success;
+}
+
+.error {
+  @apply textarea-error;
+}

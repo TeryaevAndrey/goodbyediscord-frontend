@@ -8,12 +8,17 @@ const variants = cva(styles.root, {
     variant: {
       primary: styles.primary,
       secondary: styles.secondary,
+      transparent: styles.transparent,
     },
 
     sizes: {
       small: styles.small,
       average: styles.average,
       big: styles.big,
+    },
+
+    mode: {
+      square: styles.square,
     },
   },
 
@@ -35,10 +40,14 @@ export const Button: FC<Props> = ({
   className,
   variant,
   sizes,
+  mode,
   ...props
 }) => {
   return (
-    <button className={cn(variants({ variant, sizes, className }))} {...props}>
+    <button
+      className={cn(variants({ variant, sizes, mode }), className)}
+      {...props}
+    >
       {children}
     </button>
   );
