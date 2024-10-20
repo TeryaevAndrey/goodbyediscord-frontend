@@ -1,4 +1,4 @@
-import { TextField, UploadAvatar } from "@/components/ui";
+import { Textarea, TextField, UploadAvatar } from "@/components/ui";
 
 export const AddChannelModal = () => {
   return (
@@ -11,6 +11,8 @@ export const AddChannelModal = () => {
 
           <TextField placeholder="Channel name" />
         </div>
+
+        <Textarea className="mt-4" placeholder="Description" />
 
         <div className="modal-action">
           <form method="dialog">

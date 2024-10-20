@@ -26,11 +26,11 @@ interface Props
     >,
     VariantProps<typeof variants> {}
 
-export const Textarea: FC<Props> = ({ className, variant, sizes }) => {
+export const Textarea: FC<Props> = ({ className, variant, sizes, ...props }) => {
   return (
     <textarea
       className={cn(variants({ variant, sizes, className }))}
-      placeholder="Bio"
+      {...props}
     ></textarea>
   );
 };
