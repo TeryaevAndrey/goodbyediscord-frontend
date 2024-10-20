@@ -1,7 +1,12 @@
+import { ThemeContextProvider } from "./shared/contexts";
 import { useRouter } from "./shared/hooks";
 
 function App() {
-  return <div>{useRouter()}</div>;
+  return (
+    <ThemeContextProvider>
+      <div>{useRouter()}</div>;
+    </ThemeContextProvider>
+  );
 }
 
 export default App;
