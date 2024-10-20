@@ -45,7 +45,7 @@ export const Button: FC<Props> = ({
 }) => {
   return (
     <button
-      className={cn(variants({ variant, sizes, mode, className }))}
+      className={cn(variants({ variant, sizes, mode }), className)}
       {...props}
     >
       {children}

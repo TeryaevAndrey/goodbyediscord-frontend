@@ -48,7 +48,13 @@ export const SecondarySidebar = () => {
         <Button variant="secondary" mode="square">
           EN
         </Button>
-        <Button variant="secondary" mode="square">
+        <Button
+          variant="secondary"
+          mode="square"
+          onClick={() =>
+            document.getElementById("settings_modal")?.showModal()
+          }
+        >
           <FiSettings size={24} />
         </Button>
       </div>
