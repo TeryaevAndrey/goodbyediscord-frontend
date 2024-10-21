@@ -1,11 +1,13 @@
 import { Button, FormControl, TextField } from "@/components/ui";
 import { FormControlError } from "@/components/ui/FormControl/components";
+import { useSignInMutation } from "@/shared/store/api";
 import { PropsWithClassName } from "@/shared/types";
 import { SignInFormData } from "@/shared/types/auth.types";
 import { cn } from "@/shared/utils";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const SignInForm: FC<PropsWithClassName> = ({ className }) => {
   const {
@@ -13,9 +15,20 @@ export const SignInForm: FC<PropsWithClassName> = ({ className }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<SignInFormData>();
+  const [signIn] = useSignInMutation();
 
-  const formHandler = handleSubmit((data) => {
-    console.log(data);
+  const formHandler = handleSubmit(async (data) => {
+    try {
+      await signIn(data).unwrap();
+      toast.success("Вход выполнен успешно!");
+    } catch (err: any) {
+      console.error("Ошибка при входе:", err);
+      if (err.status === 400) {
+        toast.error("Неверные данные. Попробуйте снова.");
+      } else {
+        toast.error("Ошибка при входе. Повторите попытку.");
+      }
+    }
   });
 
   return (
@@ -37,6 +50,20 @@ export const SignInForm: FC<PropsWithClassName> = ({ className }) => {
           />
           {errors?.email?.message && (
             <FormControlError>{errors.email.message}</FormControlError>
+          )}
+        </FormControl>
+        <FormControl>
+          <TextField
+            {...register("login", {
+              required: {
+                value: true,
+                message: "Поле обязательно для заполнения",
+              },
+            })}
+            placeholder="Login"
+          />
+          {errors?.login?.message && (
+            <FormControlError>{errors.login.message}</FormControlError>
           )}
         </FormControl>
         <FormControl>

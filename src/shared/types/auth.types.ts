@@ -2,6 +2,7 @@ import { User } from "./users.types";
 
 export type SignInFormData = {
   email: string;
+  login: string;
   password: string;
 };
 

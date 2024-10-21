@@ -1,5 +1,5 @@
 import { AuthRes, SignInParams, SignUpParams } from "@/shared/types";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const authApi = createApi({
   reducerPath: "authApi",
@@ -29,3 +29,5 @@ export const authApi = createApi({
     }),
   }),
 });
+
+export const { useSignInMutation, useSignUpMutation } = authApi;
