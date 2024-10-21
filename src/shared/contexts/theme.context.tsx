@@ -1,7 +1,7 @@
 import { createContext, FC, PropsWithChildren, useState } from "react";
 import { Themes } from "../types";
 
-const storageTheme = localStorage.get("theme") as Themes;
+const storageTheme = localStorage.getItem("theme") as Themes;
 
 export type ContextTypes = {
   theme: Themes;

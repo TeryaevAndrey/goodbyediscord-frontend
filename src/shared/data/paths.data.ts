@@ -4,7 +4,7 @@ const { SignInPage, SignUpPage, PasswordRecoveryPage } = lazily(
   () => import("@/pages/auth")
 );
 
-const { HomePage } = lazily(() => import("@/pages"));
+const { HomePage, ChannelPage } = lazily(() => import("@/pages"));
 
 export const paths = {
   auth: {
@@ -26,6 +26,11 @@ export const paths = {
     home: {
       path: "/",
       element: HomePage,
+    },
+
+    channel: {
+      path: "/channel/:id",
+      element: ChannelPage,
     },
   },
 };
