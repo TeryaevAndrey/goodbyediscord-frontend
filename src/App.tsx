@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <ThemeContextProvider>
-      <div>{useRouter()}</div>;
+      <div>{useRouter()}</div>
       <ToastContainer
         position="top-center"
         autoClose={2000}
