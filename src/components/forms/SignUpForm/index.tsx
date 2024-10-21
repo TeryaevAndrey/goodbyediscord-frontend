@@ -1,11 +1,13 @@
 import { Button, FormControl, TextField } from "@/components/ui";
 import { FormControlError } from "@/components/ui/FormControl/components";
+import { useSignUpMutation } from "@/shared/store/api";
 import { PropsWithClassName } from "@/shared/types";
 import { SignUpFormData } from "@/shared/types/auth.types";
 import { cn } from "@/shared/utils";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const SignUpForm: FC<PropsWithClassName> = ({ className }) => {
   const {
@@ -13,9 +15,20 @@ export const SignUpForm: FC<PropsWithClassName> = ({ className }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpFormData>();
+  const [signUp] = useSignUpMutation();
 
-  const formHandler = handleSubmit((data) => {
-    console.log(data);
+  const formHandler = handleSubmit(async (data) => {
+    try {
+      await signUp(data).unwrap();
+      toast.success("Вход выполнен успешно!");
+    } catch (err: any) {
+      console.error("Ошибка при входе:", err);
+      if (err.status === 400) {
+        toast.error("Неверные данные. Попробуйте снова.");
+      } else {
+        toast.error("Ошибка при входе. Повторите попытку.");
+      }
+    }
   });
 
   return (

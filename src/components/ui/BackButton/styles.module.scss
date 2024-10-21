@@ -1,0 +1,11 @@
+.root {
+  @apply flex items-center gap-2 text-base-content/50 ease-linear duration-200 hover:text-base-content;
+
+  .icon {
+    @apply text-base-content/50 ease-linear duration-200;
+  }
+
+  &:hover .icon {
+    @apply text-base-content;
+  }
+}

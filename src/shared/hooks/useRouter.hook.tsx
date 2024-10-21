@@ -3,6 +3,7 @@ import { paths } from "../data";
 import { useAppSelector } from "../types";
 import { user } from "../store/slices";
 import { Suspense } from "react";
+import { LoaderPage } from "@/components/layout";
 
 export const useRouter = () => {
   const { isAuth } = useAppSelector(user);
@@ -20,7 +21,7 @@ export const useRouter = () => {
               key={index}
               path={path[1].path}
               element={
-                <Suspense>
+                <Suspense fallback={<LoaderPage />}>
                   <Page />
                 </Suspense>
               }
@@ -41,7 +42,7 @@ export const useRouter = () => {
             key={index}
             path={path[1].path}
             element={
-              <Suspense>
+              <Suspense fallback={<LoaderPage />}>
                 <Page />
               </Suspense>
             }
