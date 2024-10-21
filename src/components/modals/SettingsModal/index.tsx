@@ -40,6 +40,11 @@ export const SettingsModal = () => {
               </li>
             </ul>
           </div>
+
+          <Button className="bg-base-100" variant="transparent">
+            Выход
+            <FaRegUserCircle className="text-base-content" size={20} />
+          </Button>
         </div>
       </div>
     </dialog>
