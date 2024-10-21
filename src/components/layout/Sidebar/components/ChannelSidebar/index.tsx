@@ -1,4 +1,4 @@
-import { Button, Search, VoiceChat } from "@/components/ui";
+import { Button, Search, TextChat, VoiceChat } from "@/components/ui";
 
 export const ChannelSidebar = () => {
   return (
@@ -15,9 +15,11 @@ export const ChannelSidebar = () => {
         <Search />
       </div>
 
-      <div className="flex flex-col mt-6 overflow-y-auto h-full max-h-[calc(100dvh-95px)]">
+      <div className="flex flex-col gap-6 mt-6 overflow-y-auto h-full max-h-[calc(100dvh-95px)]">
         <div className="flex flex-col">
-          <p className="text-sm text-base-content/50 px-6 mb-2">Голосовые чаты</p>
+          <p className="text-sm text-base-content/50 px-6 mb-2">
+            Голосовые чаты
+          </p>
 
           <VoiceChat />
           <VoiceChat />
@@ -25,6 +27,20 @@ export const ChannelSidebar = () => {
           <VoiceChat />
           <VoiceChat />
           <VoiceChat />
+        </div>
+
+        <div className="flex flex-col">
+          <p className="text-sm text-base-content/50 px-6 mb-2">
+            Текстовые чаты
+          </p>
+
+          <TextChat />
+          <TextChat />
+          <TextChat />
+          <TextChat />
+          <TextChat />
+          <TextChat />
+          <TextChat />
         </div>
       </div>
     </div>

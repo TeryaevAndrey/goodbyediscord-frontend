@@ -5,6 +5,7 @@ import { cn } from "@/shared/utils";
 import { Sidebar } from "../Sidebar";
 import { ChatBox } from "@/components/widgets";
 import { ChannelSidebar } from "../Sidebar/components";
+import { AddChannelModal, AddFriendModal, SettingsModal } from "@/components/modals";
 
 export const ChannelLayout: FC<MainComponentProps> = ({
   children,
@@ -20,6 +21,10 @@ export const ChannelLayout: FC<MainComponentProps> = ({
       <ChatBox />
 
       {children}
+
+      <AddFriendModal />
+      <AddChannelModal />
+      <SettingsModal />
     </div>
   );
 };
