@@ -1,9 +1,20 @@
-import { Button, Search, TextChat, VoiceChat } from "@/components/ui";
+import {
+  BackButton,
+  Button,
+  Search,
+  TextChat,
+  VoiceChat,
+} from "@/components/ui";
+import { useNavigate } from "react-router-dom";
 
 export const ChannelSidebar = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="mx-4 flex flex-col gap-4">
+        <BackButton onClick={() => navigate("/")} />
+
         <Button
           sizes="small"
           onClick={() =>
