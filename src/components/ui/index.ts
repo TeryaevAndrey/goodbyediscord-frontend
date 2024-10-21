@@ -7,3 +7,4 @@ export * from "./UploadAvatar";
 export * from "./Textarea";
 export * from "./VoiceChat";
 export * from "./TextChat";
+export * from "./ThemeButton";

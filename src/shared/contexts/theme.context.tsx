@@ -8,7 +8,7 @@ export type ContextTypes = {
   changeTheme: (value: Themes) => void;
 };
 
-const ThemeContext = createContext({
+export const ThemeContext = createContext({
   theme: storageTheme || "dark",
   changeTheme: (value: Themes) => console.log(value),
 });
@@ -18,6 +18,8 @@ export const ThemeContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const changeTheme = (value: Themes) => {
     setTheme(value);
+
+    document.documentElement.setAttribute("data-theme", value);
   };
 
   return (
