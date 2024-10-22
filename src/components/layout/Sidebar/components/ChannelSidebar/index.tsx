@@ -1,4 +1,5 @@
 import {
+  ActiveChatUser,
   BackButton,
   Button,
   Search,
@@ -6,6 +7,8 @@ import {
   VoiceChat,
 } from "@/components/ui";
 import { useNavigate } from "react-router-dom";
+import { ChatWrapper } from "../ChatWrapper";
+import { ChatUsersList } from "../ChatUsersList";
 
 export const ChannelSidebar = () => {
   const navigate = useNavigate();
@@ -26,18 +29,36 @@ export const ChannelSidebar = () => {
         <Search />
       </div>
 
-      <div className="flex flex-col gap-6 mt-6 overflow-y-auto h-full max-h-[calc(100dvh-95px)]">
+      <div className="flex flex-col gap-6 mt-6 overflow-y-auto h-full max-h-[calc(100dvh-190px)]">
         <div className="flex flex-col">
           <p className="text-sm text-base-content/50 px-6 mb-2">
             Голосовые чаты
           </p>
 
+          <ChatWrapper>
+            <VoiceChat />
+
+            <ChatUsersList>
+              <ActiveChatUser />
+              <ActiveChatUser />
+              <ActiveChatUser />
+              <ActiveChatUser />
+            </ChatUsersList>
+          </ChatWrapper>
           <VoiceChat />
           <VoiceChat />
           <VoiceChat />
           <VoiceChat />
-          <VoiceChat />
-          <VoiceChat />
+          <ChatWrapper>
+            <VoiceChat />
+
+            <ChatUsersList>
+              <ActiveChatUser />
+              <ActiveChatUser />
+              <ActiveChatUser />
+              <ActiveChatUser />
+            </ChatUsersList>
+          </ChatWrapper>
         </div>
 
         <div className="flex flex-col">
@@ -47,11 +68,27 @@ export const ChannelSidebar = () => {
 
           <TextChat />
           <TextChat />
+          <ChatWrapper>
+            <TextChat />
+
+            <ChatUsersList>
+              <ActiveChatUser />
+              <ActiveChatUser />
+              <ActiveChatUser />
+            </ChatUsersList>
+          </ChatWrapper>
           <TextChat />
           <TextChat />
           <TextChat />
-          <TextChat />
-          <TextChat />
+          <ChatWrapper>
+            <TextChat />
+
+            <ChatUsersList>
+              <ActiveChatUser />
+              <ActiveChatUser />
+              <ActiveChatUser />
+            </ChatUsersList>
+          </ChatWrapper>
         </div>
       </div>
     </div>
