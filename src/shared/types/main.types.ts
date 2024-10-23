@@ -15,3 +15,4 @@ export type MainComponentProps<T = unknown> = T &
 export type Themes = "dark" | "light";
 
 export type ErrorRes<T = unknown> = { error: string } & T;
+export type Res<T = unknown> = { message: string } & T;
