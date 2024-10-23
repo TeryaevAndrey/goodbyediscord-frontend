@@ -1,4 +1,4 @@
-import { AuthRes, SignInParams, SignUpParams } from "@/shared/types";
+import { AuthRes, SignInParams, SignUpParams, User } from "@/shared/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const authApi = createApi({
@@ -7,7 +7,7 @@ export const authApi = createApi({
     baseUrl: `${import.meta.env.VITE_API!}/auth`,
   }),
 
-  endpoints: ({ mutation }) => ({
+  endpoints: ({ query, mutation }) => ({
     signIn: mutation<AuthRes, SignInParams>({
       query: (body) => {
         return {
@@ -27,7 +27,16 @@ export const authApi = createApi({
         };
       },
     }),
+
+    getMe: query<User, null>({
+      query: () => {
+        return {
+          url: "/user-info/",
+          method: "GET"
+        }
+      }
+    })
   }),
 });
 
-export const { useSignInMutation, useSignUpMutation } = authApi;
+export const { useSignInMutation, useSignUpMutation, useGetMeQuery } = authApi;

@@ -1,9 +1,11 @@
 import { ToastContainer } from "react-toastify";
 import { ThemeContextProvider } from "./shared/contexts";
-import { useRouter } from "./shared/hooks";
+import { useRouter, useAuth } from "./shared/hooks";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  useAuth();
+
   return (
     <ThemeContextProvider>
       <div>{useRouter()}</div>
