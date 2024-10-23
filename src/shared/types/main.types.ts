@@ -13,3 +13,5 @@ export type MainComponentProps<T = unknown> = T &
   PropsWithChildren;
 
 export type Themes = "dark" | "light";
+
+export type ErrorRes<T = unknown> = { error: string } & T;

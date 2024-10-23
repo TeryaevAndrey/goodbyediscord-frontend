@@ -1,7 +1,13 @@
-import { useGetMeQuery } from "@/shared/store/api";
+import { useGetMeQuery, useGetSessionQuery } from "@/shared/store/api";
+import { useEffect } from "react";
 
 export const useAuth = () => {
-  const {data} = useGetMeQuery(null);
+  const { data, isError, error } = useGetMeQuery(null);
+  useGetSessionQuery(null);
 
-  console.log(data);
+  useEffect(() => {
+    if (!isError) return;
+
+    window.localStorage.removeItem("is-auth");
+  }, [isError]);
 };

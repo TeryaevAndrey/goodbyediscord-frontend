@@ -1,6 +1,5 @@
 import { Button, FormControl, TextField } from "@/components/ui";
 import { FormControlError } from "@/components/ui/FormControl/components";
-import { useSignUpMutation } from "@/shared/store/api";
 import { PropsWithClassName } from "@/shared/types";
 import { SignUpFormData } from "@/shared/types/auth.types";
 import { cn } from "@/shared/utils";
@@ -15,11 +14,9 @@ export const SignUpForm: FC<PropsWithClassName> = ({ className }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpFormData>();
-  const [signUp] = useSignUpMutation();
 
   const formHandler = handleSubmit(async (data) => {
     try {
-      await signUp(data).unwrap();
       toast.success("Вход выполнен успешно!");
     } catch (err: any) {
       console.error("Ошибка при входе:", err);
