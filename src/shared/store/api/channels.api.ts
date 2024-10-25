@@ -5,11 +5,12 @@ import {
   GetUserChannelsRes,
 } from "@/shared/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import Cookies from "js-cookie";
 
 export const channelsApi = createApi({
   reducerPath: "channelsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_API!}/user_channels`,
+    baseUrl: `${import.meta.env.VITE_API!}/channels`,
   }),
 
   tagTypes: ["channels"],
@@ -18,22 +19,29 @@ export const channelsApi = createApi({
     createChannel: mutation<CreateChannelRes, CreateChannelParams>({
       query(body) {
         return {
-          url: "/create/",
+          url: "/",
           method: "POST",
           body,
           credentials: "include",
+          headers: {
+            "X-CSRFToken": Cookies.get('csrftoken')
+          }
         };
       },
+
+      invalidatesTags: ["channels"],
     }),
 
     getUserChannels: query<GetUserChannelsRes, GetUserChannelsParams>({
       query() {
         return {
-          url: "/",
+          url: "/list/",
           method: "GET",
           credentials: "include",
         };
       },
+
+      providesTags: ["channels"],
     }),
   }),
 });

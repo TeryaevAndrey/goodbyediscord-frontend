@@ -1,0 +1,16 @@
+.root {
+  @apply flex items-center gap-4;
+}
+
+.small .title {
+  @apply text-sm;
+}
+
+.text {
+  @apply text-xs text-base-content/50;
+}
+
+.average .title,
+.big .title {
+  @apply text-base;
+}

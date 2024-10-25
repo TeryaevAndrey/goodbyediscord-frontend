@@ -1,5 +1,6 @@
 import { Channel } from "@/components/entities";
 import { Button } from "@/components/ui";
+import { useGetUserChannelsQuery } from "@/shared/store/api";
 import { MainComponentProps } from "@/shared/types";
 import { cn } from "@/shared/utils";
 import { FC } from "react";
@@ -8,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Channels: FC<MainComponentProps> = ({ className }) => {
   const navigate = useNavigate();
+  const {data: channels} = useGetUserChannelsQuery(null);
 
   return (
     <div className={cn("flex flex-col", className)}>

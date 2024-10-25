@@ -29,3 +29,7 @@ export type AuthRes = {
   message: string;
   user: User;
 };
+
+export type GetMeRes = {
+  user: User;
+}

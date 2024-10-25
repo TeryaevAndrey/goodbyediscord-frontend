@@ -1,11 +1,19 @@
-import { ChannelLayout } from "@/components/layout"
+import { ChannelUsersDrawer } from "@/components/drawers";
+import { ChannelLayout } from "@/components/layout";
+import { DrawersContext } from "@/pages/ChannelPage/shared/contexts";
+import { useContext } from "react";
 
 export const ChannelScreen = () => {
-  return(
+  const { isOpenUsersDrawer, setOpenUsersDrawer } = useContext(DrawersContext);
+
+  return (
     <ChannelLayout>
-      <div>
-        
-      </div>
+      <div></div>
+
+      <ChannelUsersDrawer
+        isOpen={isOpenUsersDrawer}
+        close={() => setOpenUsersDrawer(false)}
+      />
     </ChannelLayout>
-  )
-}
+  );
+};

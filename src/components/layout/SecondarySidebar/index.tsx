@@ -5,7 +5,7 @@ import { Channels } from "./components";
 
 export const SecondarySidebar = () => {
   return (
-    <div className="w-[90px] bg-base-200 h-[100dvh] py-6 flex flex-col justify-between items-center gap-4">
+    <div className="min-w-[90px] w-[90px] bg-base-200 h-[100dvh] py-6 flex flex-col justify-between items-center gap-4">
       <CurrentUser />
 
       <Channels className="mb-auto mt-4" />

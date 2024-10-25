@@ -1,0 +1,23 @@
+.root {
+  @apply avatar online cursor-pointer;
+}
+
+.imgWrapper {
+  @apply rounded-full;
+}
+
+.root.small .imgWrapper {
+  @apply w-8;
+}
+
+.root.average .imgWrapper {
+  @apply w-10;
+}
+
+.root.big .imgWrapper {
+  @apply w-12;
+}
+
+.img {
+  @apply object-cover;
+}

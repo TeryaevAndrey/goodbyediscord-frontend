@@ -21,8 +21,6 @@ export const ChatBox: FC<PropsWithClassName> = () => {
 
         <ChatFooter className="mt-auto" />
       </div>
-
-      <div className="w-[400px] bg-base-300"></div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { User } from "@/shared/types";
+import { GetMeRes, User } from "@/shared/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const authApi = createApi({
@@ -8,7 +8,7 @@ export const authApi = createApi({
   }),
 
   endpoints: ({ query }) => ({
-    getMe: query<User, null>({
+    getMe: query<GetMeRes, null>({
       query: () => {
         return {
           url: "/user/",
