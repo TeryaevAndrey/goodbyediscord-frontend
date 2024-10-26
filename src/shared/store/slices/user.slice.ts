@@ -1,8 +1,9 @@
 import { RootState, User } from "@/shared/types";
 import { PayloadAction } from "./../../../../node_modules/@reduxjs/toolkit/src/createAction";
 import { createSlice } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
-const isAuthFromStorage = window.localStorage.getItem("is-auth");
+const token = Cookies.get("access");
 
 type InitialState = {
   isAuth: boolean;
@@ -10,7 +11,7 @@ type InitialState = {
 };
 
 const initialState: InitialState = {
-  isAuth: isAuthFromStorage === "true",
+  isAuth: Boolean(token),
 };
 
 export const userSlice = createSlice({
@@ -23,7 +24,7 @@ export const userSlice = createSlice({
 
     setUserData: (state, action: PayloadAction<User | undefined>) => {
       state.userData = action.payload;
-    }
+    },
   },
 });
 

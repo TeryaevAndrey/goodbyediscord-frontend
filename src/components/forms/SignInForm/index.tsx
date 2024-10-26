@@ -1,58 +1,44 @@
 import { Button, FormControl, TextField } from "@/components/ui";
 import { FormControlError } from "@/components/ui/FormControl/components";
-import { ErrorRes, PropsWithClassName } from "@/shared/types";
-import { SignInFormData } from "@/shared/types/auth.types";
+import { useSignInMutation } from "@/shared/store/api";
+import { PropsWithClassName } from "@/shared/types";
+import { SignInParams } from "@/shared/types/auth.types";
 import { cn } from "@/shared/utils";
-import { FC, useState } from "react";
+import Cookies from "js-cookie";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios, { AxiosError } from "axios";
 
 export const SignInForm: FC<PropsWithClassName> = ({ className }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignInFormData>();
-  const [isLoading, setIsLoading] = useState(false);
+  } = useForm<SignInParams>();
+  const [mutate, { isLoading }] = useSignInMutation();
 
-  const formHandler = handleSubmit(async (data) => {
-    try {
-      setIsLoading(true);
+  const formHandler = handleSubmit((data) => {
+    mutate(data)
+      .then((res) => {
+        if (res.error) {
+          toast.error("Что-то пошло не так...");
+        } else {
+          toast.success("Авторизация прошла успешно!");
 
-      await axios
-        .get(import.meta.env.VITE_API + "/auth/csrf/", {
-          withCredentials: true,
-        })
-        .then(async (res) => {
-          const csrfToken = res.headers.get("X-CSRFToken");
+          const { access, refresh } = res.data;
 
-          await axios
-            .post(import.meta.env.VITE_API + "/auth/sign-in/", data, {
-              withCredentials: true,
-              headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": csrfToken,
-              },
-            })
-            .then(() => {
-              toast.success("Авторизация прошла успешно!");
+          Cookies.set("access", access);
+          Cookies.set("refresh", refresh);
 
-              setTimeout(() => {
-                window.localStorage.setItem("is-auth", "true");
-                window.location.reload();
-              }, 500);
-            });
-        })
-        .catch((err: AxiosError<ErrorRes>) =>
-          toast.error(err.response?.data.error)
-        );
-    } catch {
-      toast.error("Не удалось получить токен");
-    } finally {
-      setIsLoading(false);
-    }
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+        }
+      })
+      .catch(() => {
+        toast.error("Ошибка во время авторизации");
+      });
   });
 
   return (
@@ -74,20 +60,6 @@ export const SignInForm: FC<PropsWithClassName> = ({ className }) => {
           />
           {errors?.email?.message && (
             <FormControlError>{errors.email.message}</FormControlError>
-          )}
-        </FormControl>
-        <FormControl>
-          <TextField
-            {...register("login", {
-              required: {
-                value: true,
-                message: "Поле обязательно для заполнения",
-              },
-            })}
-            placeholder="Login"
-          />
-          {errors?.login?.message && (
-            <FormControlError>{errors.login.message}</FormControlError>
           )}
         </FormControl>
         <FormControl>

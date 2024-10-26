@@ -6,11 +6,12 @@ import {
   User,
 } from "@/shared/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import Cookies from "js-cookie";
 
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_API!}/auth`,
+    baseUrl: `${import.meta.env.VITE_API!}/user_auth`,
   }),
 
   endpoints: ({ query, mutation }) => ({
@@ -37,11 +38,10 @@ export const authApi = createApi({
     getMe: query<GetMeRes, null>({
       query: () => {
         return {
-          url: "/user/",
+          url: "/me/",
           method: "GET",
-          credentials: "include",
           headers: {
-            "Content-Type": "application/json",
+            "Authorization": `Bearer ${Cookies.get("access")}`
           },
         };
       },

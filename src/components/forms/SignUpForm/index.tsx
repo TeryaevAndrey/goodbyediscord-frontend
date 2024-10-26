@@ -1,8 +1,9 @@
 import { Button, FormControl, TextField } from "@/components/ui";
 import { FormControlError } from "@/components/ui/FormControl/components";
-import { PropsWithClassName } from "@/shared/types";
-import { SignUpFormData } from "@/shared/types/auth.types";
+import { useSignUpMutation } from "@/shared/store/api";
+import { PropsWithClassName, SignUpParams } from "@/shared/types";
 import { cn } from "@/shared/utils";
+import Cookies from "js-cookie";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -13,19 +14,33 @@ export const SignUpForm: FC<PropsWithClassName> = ({ className }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignUpFormData>();
+  } = useForm<SignUpParams>();
+  const [mutate, { isLoading }] = useSignUpMutation();
 
-  const formHandler = handleSubmit(async (data) => {
-    try {
-      toast.success("Вход выполнен успешно!");
-    } catch (err: any) {
-      console.error("Ошибка при входе:", err);
-      if (err.status === 400) {
-        toast.error("Неверные данные. Попробуйте снова.");
-      } else {
-        toast.error("Ошибка при входе. Повторите попытку.");
-      }
-    }
+  const formHandler = handleSubmit((data) => {
+    if (data.password !== data.passwordRepeat)
+      return toast.error("Пароли не совпадают!");
+
+    mutate(data)
+      .then((res) => {
+        if (res.error) {
+          toast.error("Что-то пошло не так...");
+        } else {
+          toast.success("Регистрация прошла успешно!");
+
+          const { access, refresh } = res.data;
+
+          Cookies.set("access", access);
+          Cookies.set("refresh", refresh);
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+        }
+      })
+      .catch(() => {
+        toast.error("Что-то пошло не так...");
+      });
   });
 
   return (
@@ -52,17 +67,17 @@ export const SignUpForm: FC<PropsWithClassName> = ({ className }) => {
         </FormControl>
         <FormControl>
           <TextField
-            {...register("login", {
+            {...register("username", {
               required: {
                 value: true,
                 message: "Поле обязательно для заполнения",
               },
             })}
-            placeholder="Login"
+            placeholder="Username"
           />
 
-          {errors?.login?.message && (
-            <FormControlError>{errors.login.message}</FormControlError>
+          {errors?.username?.message && (
+            <FormControlError>{errors.username.message}</FormControlError>
           )}
         </FormControl>
         <FormControl>
@@ -97,7 +112,9 @@ export const SignUpForm: FC<PropsWithClassName> = ({ className }) => {
         </FormControl>
       </div>
 
-      <Button className="mt-6">Регистрация</Button>
+      <Button className="mt-6" disabled={isLoading}>
+        {isLoading ? "Загрузка..." : "Регистрация"}
+      </Button>
 
       <Link
         className="mt-2 flex justify-center link link-secondary"
