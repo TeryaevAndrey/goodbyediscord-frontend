@@ -1,6 +1,7 @@
 import { EntityItem } from "@/components/entities";
 import { EmptyText } from "@/components/shared";
 import { Loader, TextField } from "@/components/ui";
+import { useLoading } from "@/shared/hooks";
 import { useSearchUsersQuery } from "@/shared/store/api";
 import { ChangeEvent, useState } from "react";
 import { useDebounce } from "use-debounce";
@@ -9,13 +10,17 @@ export const AddMembersChannelModal = () => {
   const [text, setText] = useState("");
   const [textDebounce] = useDebounce(text, 1000);
 
-  const { data: usersList, isLoading } = useSearchUsersQuery({
+  const { data: usersList, isLoading, isFetching } = useSearchUsersQuery({
     q: textDebounce,
   });
 
   const onChangeText = (e: ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
   };
+
+  const loading = useLoading(isLoading, isFetching);
+
+  console.log(loading);
 
   return (
     <dialog id="add_members_channel_modal" className="modal">
@@ -30,7 +35,7 @@ export const AddMembersChannelModal = () => {
         />
 
         <div className="flex flex-col gap-2 mt-4">
-          {isLoading ? (
+          {loading ? (
             <Loader />
           ) : (
             <>

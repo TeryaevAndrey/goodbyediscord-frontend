@@ -1,21 +1,19 @@
 import { useEffect, useState } from "react";
 
 export const useLoading = (isLoading: boolean, isFetching?: boolean) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (isLoading || isFetching) {
-      setLoading(true);
-
-      const timer = setTimeout(() => {
-        setLoading(false);
-      }, 300);
-
-      return () => clearTimeout(timer);
+    let timeout: ReturnType<typeof setTimeout>;
+    if (isFetching !== undefined) {
+      if (isFetching || isLoading) setLoading(true);
+      else timeout = setTimeout(() => setLoading(false), 200);
     } else {
-      setLoading(false);
+      if (isLoading) setLoading(true);
+      else timeout = setTimeout(() => setLoading(false), 200);
     }
-  }, [isLoading, isFetching]);
+    return () => clearTimeout(timeout);
+  }, [isFetching, isLoading]);
 
   return loading;
 };
