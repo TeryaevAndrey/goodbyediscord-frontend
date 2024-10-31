@@ -1,6 +1,6 @@
 import { EntityItem } from "@/components/entities";
 import { EmptyText } from "@/components/shared";
-import { Loader, TextField } from "@/components/ui";
+import { Button, Loader, TextField } from "@/components/ui";
 import { useLoading } from "@/shared/hooks";
 import { useSearchUsersQuery } from "@/shared/store/api";
 import { ChangeEvent, useState } from "react";
@@ -10,7 +10,11 @@ export const AddMembersChannelModal = () => {
   const [text, setText] = useState("");
   const [textDebounce] = useDebounce(text, 1000);
 
-  const { data: usersList, isLoading, isFetching } = useSearchUsersQuery({
+  const {
+    data: usersList,
+    isLoading,
+    isFetching,
+  } = useSearchUsersQuery({
     q: textDebounce,
   });
 
@@ -40,7 +44,16 @@ export const AddMembersChannelModal = () => {
           ) : (
             <>
               {usersList && usersList.length > 0 ? (
-                usersList?.map((user) => <EntityItem key={user.id} />)
+                usersList?.map((user) => (
+                  <EntityItem
+                    key={user.id}
+                    control={
+                      <Button className="w-max" sizes="small">
+                        Пригласить в канал
+                      </Button>
+                    }
+                  />
+                ))
               ) : (
                 <EmptyText>Список пуст</EmptyText>
               )}
