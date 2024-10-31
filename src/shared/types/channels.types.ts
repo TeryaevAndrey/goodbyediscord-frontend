@@ -11,11 +11,10 @@ export type Channel = {
 };
 
 export type CreateChannelParams = {
+  avatar_url: string; 
   name: string;
-  owner_id: number;
-  description?: string;
-  avatar_channel_urls?: string;
-  users?: number[];
+  description: string;
+  members: number[]
 };
 
 export type CreateChannelFormData = {
@@ -28,3 +27,13 @@ export type CreateChannelRes = Res<Channel>;
 export type GetUserChannelsParams = null;
 
 export type GetUserChannelsRes = Res<{ channels: Channel[] }>;
+
+export type UpdateChannelParams = {
+  id: number;
+  avatar_url?: string;
+  name?: string;
+  description?: string;
+  members?: number[];
+}
+
+export type UpdateChannelRes = Channel;

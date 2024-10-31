@@ -3,6 +3,8 @@ import {
   CreateChannelRes,
   GetUserChannelsParams,
   GetUserChannelsRes,
+  UpdateChannelParams,
+  UpdateChannelRes,
 } from "@/shared/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
@@ -10,7 +12,11 @@ import Cookies from "js-cookie";
 export const channelsApi = createApi({
   reducerPath: "channelsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_API!}/channels`,
+    baseUrl: `${import.meta.env.VITE_API!}/user_channels`,
+
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
   }),
 
   tagTypes: ["channels"],
@@ -19,13 +25,9 @@ export const channelsApi = createApi({
     createChannel: mutation<CreateChannelRes, CreateChannelParams>({
       query(body) {
         return {
-          url: "/",
-          method: "POST",
+          url: "/create-channel/",
           body,
-          credentials: "include",
-          headers: {
-            "X-CSRFToken": Cookies.get('csrftoken')
-          }
+          method: "POST",
         };
       },
 
@@ -35,16 +37,27 @@ export const channelsApi = createApi({
     getUserChannels: query<GetUserChannelsRes, GetUserChannelsParams>({
       query() {
         return {
-          url: "/list/",
+          url: "/",
           method: "GET",
-          credentials: "include",
         };
       },
 
       providesTags: ["channels"],
     }),
+
+    updateChannel: mutation<UpdateChannelRes, UpdateChannelParams>({
+      query(body) {
+        return {
+          url: `/update/${body.id}/`,
+          method: "PUT",
+          body,
+        };
+      },
+
+      invalidatesTags: ["channels"],
+    }),
   }),
 });
 
-export const { useCreateChannelMutation, useGetUserChannelsQuery } =
+export const { useCreateChannelMutation, useGetUserChannelsQuery, useUpdateChannelMutation } =
   channelsApi;
