@@ -1,5 +1,6 @@
 import { SearchUsersParams, SearchUsersRes } from "@/shared/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import Cookies from "js-cookie";
 
 export const usersApi = createApi({
   reducerPath: "usersApi",
@@ -14,6 +15,9 @@ export const usersApi = createApi({
           url: "/search/",
           method: "GET",
           params,
+          headers: {
+            Authorization: `Bearer ${Cookies.get("access")}`,
+          },
         };
       },
     }),

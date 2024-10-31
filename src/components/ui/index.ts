@@ -12,3 +12,4 @@ export * from "./BackButton";
 export * from "./ActiveChatUser";
 export * from "./Avatar";
 export * from "./User";
+export * from "./Loader";
