@@ -6,29 +6,47 @@ import {
   UploadAvatar,
 } from "@/components/ui";
 import { FormControlError } from "@/components/ui/FormControl/components";
-import { useCreateChannelMutation } from "@/shared/store/api";
-import { user } from "@/shared/store/slices";
-import { CreateChannelFormData, useAppSelector } from "@/shared/types";
+import { CreateChannelFormData } from "@/shared/types";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
+import { useSearchParams } from "react-router-dom";
 
 export const AddChannelModal = () => {
-  const [createChannel] = useCreateChannelMutation();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<CreateChannelFormData>();
-  const {userData} = useAppSelector(user);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const formHandler = handleSubmit(async (data) => {
-    if(!userData) return toast.error("Не получилось получить ваши данные");
+  const closeModal = () => {
+    document.getElementById("add_channel_modal")?.close();
+  };
 
-    await createChannel({
-      ...data,
-      owner_id: userData.id
-    });
+  const openMembersModal = () => {
+    document.getElementById("add_members_channel_modal")?.showModal();
+  }
+
+  const formHandler = handleSubmit(({ name, description }) => {
+    const params: { [key: string]: string } = {
+      name,
+    };
+
+    if (description) {
+      params.description = description;
+    }
+
+    setSearchParams(params);
+
+    closeModal();
+    openMembersModal();
   });
+
+  useEffect(() => {
+    setValue("name", searchParams.get("name") as string);
+    setValue("description", searchParams.get("description") as string);
+  }, [searchParams, setValue]);
 
   return (
     <dialog id="add_channel_modal" className="modal">
@@ -63,7 +81,7 @@ export const AddChannelModal = () => {
 
         <div className="modal-action">
           <div className="flex items-center gap-4 flex-wrap">
-            <button className="btn" type="button">
+            <button className="btn" type="button" onClick={closeModal}>
               Close
             </button>
             <Button className="w-max" type="submit">

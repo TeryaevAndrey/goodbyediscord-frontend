@@ -13,13 +13,13 @@ export type Channel = {
 export type CreateChannelParams = {
   avatar_url: string; 
   name: string;
-  description: string;
-  members: number[]
+  description?: string;
+  members?: number[]
 };
 
 export type CreateChannelFormData = {
   name: string;
-  description: string;
+  description?: string;
 };
 
 export type CreateChannelRes = Res<Channel>;

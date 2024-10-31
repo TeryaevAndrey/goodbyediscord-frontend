@@ -8,6 +8,7 @@ import { ChatBox } from "@/components/widgets";
 import {
   AddChannelModal,
   AddFriendModal,
+  AddMembersChannelModal,
   SettingsModal,
 } from "@/components/modals";
 
@@ -26,6 +27,7 @@ export const MainLayout: FC<MainComponentProps> = ({ children, className }) => {
       <AddFriendModal />
       <AddChannelModal />
       <SettingsModal />
+      <AddMembersChannelModal />
     </div>
   );
 };
