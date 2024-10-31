@@ -5,3 +5,9 @@ export type User = {
   created_at: string;
   updated_at: string;
 }
+
+export type SearchUsersParams = {
+  q: string;
+}
+
+export type SearchUsersRes = User[]
