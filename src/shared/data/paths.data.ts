@@ -29,7 +29,7 @@ export const paths = {
     },
 
     channel: {
-      path: "/channel/:id",
+      path: "/channels/:id",
       element: ChannelPage,
     },
   },

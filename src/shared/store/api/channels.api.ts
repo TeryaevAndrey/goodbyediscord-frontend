@@ -1,6 +1,8 @@
 import {
+  Channel,
   CreateChannelParams,
   CreateChannelRes,
+  getChannelByIdParams,
   GetUserChannelsParams,
   GetUserChannelsRes,
   UpdateChannelParams,
@@ -13,10 +15,6 @@ export const channelsApi = createApi({
   reducerPath: "channelsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${import.meta.env.VITE_API!}/user_channels`,
-
-    headers: {
-      Authorization: `Bearer ${Cookies.get("token")}`,
-    },
   }),
 
   tagTypes: ["channels"],
@@ -28,6 +26,9 @@ export const channelsApi = createApi({
           url: "/create-channel/",
           body,
           method: "POST",
+          headers: {
+            Authorization: `Bearer ${Cookies.get("access")}`,
+          },
         };
       },
 
@@ -39,10 +40,25 @@ export const channelsApi = createApi({
         return {
           url: "/",
           method: "GET",
+          headers: {
+            Authorization: `Bearer ${Cookies.get("access")}`,
+          },
         };
       },
 
       providesTags: ["channels"],
+    }),
+
+    getChannelById: query<Channel, getChannelByIdParams>({
+      query(params) {
+        return {
+          url: `/${params.id}/`,
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${Cookies.get("access")}`,
+          },
+        }
+      }
     }),
 
     updateChannel: mutation<UpdateChannelRes, UpdateChannelParams>({
@@ -51,6 +67,9 @@ export const channelsApi = createApi({
           url: `/update/${body.id}/`,
           method: "PUT",
           body,
+          headers: {
+            Authorization: `Bearer ${Cookies.get("access")}`,
+          },
         };
       },
 
@@ -59,5 +78,9 @@ export const channelsApi = createApi({
   }),
 });
 
-export const { useCreateChannelMutation, useGetUserChannelsQuery, useUpdateChannelMutation } =
-  channelsApi;
+export const {
+  useCreateChannelMutation,
+  useGetUserChannelsQuery,
+  useGetChannelByIdQuery,
+  useUpdateChannelMutation,
+} = channelsApi;

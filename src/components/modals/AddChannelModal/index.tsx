@@ -25,7 +25,7 @@ export const AddChannelModal = () => {
   };
 
   const openMembersModal = () => {
-    document.getElementById("add_members_channel_modal")?.showModal();
+    document.getElementById("add_members_channel_modal_with_miss")?.showModal();
   }
 
   const formHandler = handleSubmit(({ name, description }) => {

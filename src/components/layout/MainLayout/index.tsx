@@ -28,6 +28,7 @@ export const MainLayout: FC<MainComponentProps> = ({ children, className }) => {
       <AddChannelModal />
       <SettingsModal />
       <AddMembersChannelModal />
+      <AddMembersChannelModal type="create" withMiss={true} />
     </div>
   );
 };
