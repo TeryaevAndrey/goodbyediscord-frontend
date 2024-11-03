@@ -7,5 +7,11 @@ type Props = {
 };
 
 export const User: FC<Props> = ({ userId, name }) => {
-  return <EntityItem userId={userId} name={name} />;
+  return (
+    <EntityItem
+      userId={userId}
+      name={name}
+      onClick={() => document.getElementById("user_modal")?.showModal()}
+    />
+  );
 };

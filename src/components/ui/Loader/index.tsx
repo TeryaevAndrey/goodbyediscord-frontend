@@ -1,3 +1,11 @@
-export const Loader = () => {
-  return <span className="loading loading-bars loading-lg mx-auto"></span>;
+import { PropsWithClassName } from "@/shared/types";
+import { cn } from "@/shared/utils";
+import { FC } from "react";
+
+export const Loader: FC<PropsWithClassName> = ({ className }) => {
+  return (
+    <span
+      className={cn("loading loading-bars loading-lg mx-auto", className)}
+    ></span>
+  );
 };

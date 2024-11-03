@@ -16,6 +16,7 @@ export const EntityItem: FC<Props> = ({
   avatarUrl,
   userId,
   name,
+  ...props
 }) => {
   return (
     <div
@@ -23,6 +24,7 @@ export const EntityItem: FC<Props> = ({
         "w-full flex justify-between items-center gap-4 p-4 py-2 cursor-pointer hover:bg-base-200 ease-linear duration-200 active:bg-base-200/90",
         className
       )}
+      {...props}
     >
       <div className="flex items-center gap-4">
         <div className="avatar online cursor-pointer">
@@ -30,7 +32,9 @@ export const EntityItem: FC<Props> = ({
             {avatarUrl ? (
               <img className="object-cover" src={avatarUrl} />
             ) : (
-              <div className="w-full h-full bg-blue-500 flex justify-center items-center">{name[0]}</div>
+              <div className="w-full h-full bg-blue-500 flex justify-center items-center">
+                {name[0]}
+              </div>
             )}
           </div>
         </div>

@@ -7,7 +7,7 @@ export const CurrentUser = () => {
 
   return (
     <div
-      className="flex justify-between items-center gap-2 px-4 py-3 border-t border-base-100 cursor-pointer hover:bg-base-100 ease-linear duration-200"
+      className="flex justify-between items-center gap-2 px-4 py-3 border-t border-base-100 cursor-pointer hover:bg-base-100 ease-linear duration-200 mt-auto"
       title="Перейти в профиль"
     >
       <div className="flex items-center gap-2">

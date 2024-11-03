@@ -4,7 +4,7 @@ import { Users } from "./components";
 
 export const UserSidebar = () => {
   return (
-    <div>
+    <div className="h-full">
       <div className="mx-4 flex flex-col gap-4">
         <Button
           sizes="small"
@@ -19,7 +19,7 @@ export const UserSidebar = () => {
 
       <Users />
 
-      <CurrentUser />
+      <CurrentUser  />
     </div>
   );
 };

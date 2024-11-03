@@ -19,6 +19,7 @@ export const Channels: FC<MainComponentProps> = ({ className }) => {
     <div className={cn("flex flex-col", className)}>
       {channels?.map((channel) => (
         <Button
+          key={channel.id}
           variant="transparent"
           mode="square"
           onClick={() => goToChannelPage(channel.id)}

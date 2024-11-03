@@ -10,6 +10,7 @@ import {
   AddFriendModal,
   AddMembersChannelModal,
   SettingsModal,
+  UserModal,
 } from "@/components/modals";
 
 export const MainLayout: FC<MainComponentProps> = ({ children, className }) => {
@@ -29,6 +30,7 @@ export const MainLayout: FC<MainComponentProps> = ({ children, className }) => {
       <SettingsModal />
       <AddMembersChannelModal />
       <AddMembersChannelModal type="create" withMiss={true} />
+      <UserModal />
     </div>
   );
 };
