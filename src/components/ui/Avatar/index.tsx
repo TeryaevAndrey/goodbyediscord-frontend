@@ -9,6 +9,7 @@ const variants = cva(styles.root, {
       small: styles.small,
       average: styles.average,
       big: styles.big,
+      extraBig: styles.extraBig,
     },
   },
 

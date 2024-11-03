@@ -18,6 +18,10 @@
   @apply w-12;
 }
 
+.root.extraBig .imgWrapper {
+  @apply w-28;
+}
+
 .img {
   @apply object-cover;
 }
