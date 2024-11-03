@@ -101,6 +101,8 @@ export const AddMembersChannelModal: FC<PropsWithClassName<Props>> = ({
                 usersList?.map((user) => (
                   <EntityItem
                     key={user.id}
+                    userId={user.id}
+                    name={user.username}
                     control={
                       <Button className="w-max" sizes="small">
                         Пригласить в канал

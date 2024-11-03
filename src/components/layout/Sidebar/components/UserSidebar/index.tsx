@@ -1,6 +1,6 @@
-import { EntityItem } from "@/components/entities";
 import { CurrentUser } from "@/components/shared";
 import { Button, Search } from "@/components/ui";
+import { Users } from "./components";
 
 export const UserSidebar = () => {
   return (
@@ -17,20 +17,7 @@ export const UserSidebar = () => {
         <Search />
       </div>
 
-      <div className="flex flex-col mt-6 overflow-y-auto h-full max-h-[calc(100dvh-220px)]">
-        <EntityItem />
-        <EntityItem />
-        <EntityItem />
-        <EntityItem />
-        <EntityItem />
-        <EntityItem />
-        <EntityItem />
-        <EntityItem />
-        <EntityItem />
-        <EntityItem />
-        <EntityItem />
-        <EntityItem />
-      </div>
+      <Users />
 
       <CurrentUser />
     </div>
