@@ -4,3 +4,4 @@ export * from "./MainLayout";
 export * from "./Sidebar";
 export * from "./ChannelLayout";
 export * from "./LoaderPage";
+export * from "./PageContent";

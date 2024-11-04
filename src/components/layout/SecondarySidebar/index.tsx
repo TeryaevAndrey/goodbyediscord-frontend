@@ -3,6 +3,7 @@ import { Button } from "@/components/ui";
 import { Channels } from "./components";
 import { FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { FaUsers } from "react-icons/fa6";
 
 export const SecondarySidebar = () => {
   const navigate = useNavigate();
@@ -25,6 +26,10 @@ export const SecondarySidebar = () => {
       <Channels className="mb-auto mt-4" />
 
       <div className="flex flex-col gap-4">
+        <Button variant="secondary" mode="square" title="Friendships" onClick={() => navigate("/friendships")}>
+          <FaUsers size={24} />
+        </Button>
+
         <Button variant="secondary" mode="square" title="Change language">
           EN
         </Button>

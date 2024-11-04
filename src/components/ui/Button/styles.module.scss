@@ -14,6 +14,10 @@
   @apply bg-error hover:bg-red-600;
 }
 
+.success {
+  @apply bg-success hover:bg-green-600;
+}
+
 .transparent {
   @apply border-none;
 }
@@ -32,4 +36,8 @@
 
 .square {
   @apply btn-square;
+}
+
+.square.small {
+  @apply min-w-8 w-8 h-8;
 }

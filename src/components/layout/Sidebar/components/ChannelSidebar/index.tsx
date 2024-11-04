@@ -2,7 +2,6 @@ import {
   ActiveChatUser,
   BackButton,
   Button,
-  Search,
   TextChat,
   VoiceChat,
 } from "@/components/ui";
@@ -28,7 +27,6 @@ export const ChannelSidebar = () => {
         >
           Добавить участника
         </Button>
-        <Search />
       </div>
 
       <div className="flex flex-col gap-6 mt-6 overflow-y-auto h-full max-h-[calc(100dvh-190px)]">
