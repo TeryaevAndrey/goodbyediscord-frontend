@@ -1,6 +1,5 @@
-import { EntityItem } from "@/components/entities";
 import { EmptyText } from "@/components/shared";
-import { Button, Loader, TextField } from "@/components/ui";
+import { Loader, TextField } from "@/components/ui";
 import { useLoading } from "@/shared/hooks";
 import {
   useCreateChannelMutation,
@@ -11,18 +10,23 @@ import { ChangeEvent, FC, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDebounce } from "use-debounce";
+import { User } from "./components";
 
 type Props = {
   withMiss?: boolean;
   type?: "create" | "update";
+  channelId: number;
+  channelMembers: number[];
 };
 
 export const AddMembersChannelModal: FC<PropsWithClassName<Props>> = ({
   withMiss,
   type = "create",
+  channelId,
+  channelMembers,
 }) => {
   const [text, setText] = useState("");
-  const [textDebounce] = useDebounce(text, 1000);
+  const [textDebounce] = useDebounce(text, 500);
   const [searchParams] = useSearchParams();
   const [
     createChannel,
@@ -79,7 +83,11 @@ export const AddMembersChannelModal: FC<PropsWithClassName<Props>> = ({
 
   return (
     <dialog
-      id={`add_members_channel_modal${withMiss && "_with_miss"}`}
+      id={
+        withMiss
+          ? "add_members_channel_modal_with_miss"
+          : "add_members_channel_modal"
+      }
       className="modal"
     >
       <div className="modal-box">
@@ -99,15 +107,12 @@ export const AddMembersChannelModal: FC<PropsWithClassName<Props>> = ({
             <>
               {usersList && usersList.length > 0 ? (
                 usersList?.map((user) => (
-                  <EntityItem
+                  <User
                     key={user.id}
                     userId={user.id}
                     name={user.username}
-                    control={
-                      <Button className="w-max" sizes="small">
-                        Пригласить в канал
-                      </Button>
-                    }
+                    channelId={channelId}
+                    channelMembers={channelMembers}
                   />
                 ))
               ) : (

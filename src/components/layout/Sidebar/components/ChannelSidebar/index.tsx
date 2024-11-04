@@ -21,10 +21,10 @@ export const ChannelSidebar = () => {
         <Button
           sizes="small"
           onClick={() =>
-            document.getElementById("add_friend_modal")?.showModal()
+            document.getElementById("add_members_channel_modal")?.showModal()
           }
         >
-          Добавить друга
+          Добавить участника
         </Button>
         <Search />
       </div>
