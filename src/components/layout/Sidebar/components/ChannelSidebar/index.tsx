@@ -9,6 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { ChatWrapper } from "../ChatWrapper";
 import { ChatUsersList } from "../ChatUsersList";
+import { IoIosAdd } from "react-icons/io";
 
 export const ChannelSidebar = () => {
   const navigate = useNavigate();
@@ -31,9 +32,13 @@ export const ChannelSidebar = () => {
 
       <div className="flex flex-col gap-6 mt-6 overflow-y-auto h-full max-h-[calc(100dvh-190px)]">
         <div className="flex flex-col">
-          <p className="text-sm text-base-content/50 px-6 mb-2">
-            Голосовые чаты
-          </p>
+          <div className="mb-2 px-4 flex justify-between items-center">
+            <p className="text-sm text-base-content/50">Голосовые чаты</p>
+
+            <button title="Добавить голосовой чат">
+              <IoIosAdd className="fill-base-content" size={18} />
+            </button>
+          </div>
 
           <ChatWrapper>
             <VoiceChat />
@@ -62,9 +67,13 @@ export const ChannelSidebar = () => {
         </div>
 
         <div className="flex flex-col">
-          <p className="text-sm text-base-content/50 px-6 mb-2">
-            Текстовые чаты
-          </p>
+          <div className="mb-2 px-4 flex justify-between items-center">
+            <p className="text-sm text-base-content/50">Текстовые чаты</p>
+
+            <button title="Добавить голосовой чат">
+              <IoIosAdd className="fill-base-content" size={18} />
+            </button>
+          </div>
 
           <TextChat />
           <TextChat />
