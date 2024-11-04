@@ -6,6 +6,10 @@ import { Avatar } from "../Avatar";
 
 const variants = cva(styles.root, {
   variants: {
+    variant: {
+      pointer: styles.pointer,
+    },
+
     sizes: {
       small: styles.small,
       average: styles.average,
@@ -20,16 +24,27 @@ const variants = cva(styles.root, {
 
 interface Props
   extends DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-    VariantProps<typeof variants> {}
+    VariantProps<typeof variants> {
+  userId: number;
+  name: string;
+  avatarUrl?: string;
+}
 
-export const User: FC<Props> = ({ sizes }) => {
+export const User: FC<Props> = ({
+  variant,
+  sizes,
+  userId,
+  name,
+  avatarUrl,
+  ...props
+}) => {
   return (
-    <div className={cn(variants({ sizes }))}>
-      <Avatar sizes={sizes} />
+    <div className={cn(variants({ sizes, variant }))} {...props}>
+      <Avatar sizes={sizes} url={avatarUrl} letter={name[0]} />
 
       <div className={styles.mainInfo}>
-        <h6 className={styles.title}>Имя</h6>
-        <p className={styles.text}>Description</p>
+        <h6 className={styles.title}>{name}</h6>
+        <p className={styles.text}>#{userId}</p>
       </div>
     </div>
   );

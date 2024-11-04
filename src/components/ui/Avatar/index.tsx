@@ -20,16 +20,16 @@ const variants = cva(styles.root, {
 
 interface Props
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
-    VariantProps<typeof variants> {}
+    VariantProps<typeof variants> {
+  url?: string;
+  letter?: string;
+}
 
-export const Avatar: FC<Props> = ({ className, sizes }) => {
+export const Avatar: FC<Props> = ({ className, sizes, url, letter }) => {
   return (
     <div className={cn(variants({ sizes }), className)}>
       <div className={styles.imgWrapper}>
-        <img
-          className={styles.img}
-          src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-        />
+        {url ? <img className={styles.img} src={url} /> : letter}
       </div>
     </div>
   );

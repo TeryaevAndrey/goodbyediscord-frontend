@@ -3,7 +3,7 @@
 }
 
 .imgWrapper {
-  @apply rounded-full;
+  @apply rounded-full !flex justify-center items-center bg-orange-500;
 }
 
 .root.small .imgWrapper {
@@ -23,5 +23,5 @@
 }
 
 .img {
-  @apply object-cover;
+  @apply object-cover flex justify-center items-center bg-orange-500 w-full h-full;
 }

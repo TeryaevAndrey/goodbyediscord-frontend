@@ -1,7 +1,17 @@
-import { Avatar, Button, FormControl, Textarea, TextField } from "@/components/ui";
+import {
+  Avatar,
+  Button,
+  FormControl,
+  Textarea,
+  TextField,
+} from "@/components/ui";
 import { FormControlTitle } from "@/components/ui/FormControl/components";
+import { userModal } from "@/shared/store/slices";
+import { useAppSelector } from "@/shared/types";
 
 export const UserModal = () => {
+  const { openedUser } = useAppSelector(userModal);
+
   return (
     <dialog id="user_modal" className="modal">
       <div className="modal-box min-h-[400px]">
@@ -10,20 +20,20 @@ export const UserModal = () => {
             ✕
           </button>
         </form>
-        <h3 className="font-bold text-lg">Test3</h3>
+        <h3 className="font-bold text-lg">{openedUser?.username}</h3>
 
         <div className="flex flex-col gap-4 mt-6">
-          <Avatar className="mx-auto" sizes="extraBig" />
+          <Avatar className="mx-auto" sizes="extraBig" url={undefined} letter={openedUser?.username[0]}  />
 
           <div className="flex flex-col gap-4 w-full">
             <FormControl>
               <FormControlTitle>Имя</FormControlTitle>
-              <TextField value={"Test3"} readOnly />
+              <TextField value={openedUser?.username} readOnly />
             </FormControl>
 
             <FormControl>
               <FormControlTitle>Обо мне</FormControlTitle>
-              <Textarea value="Какое то описание" readOnly />
+              <Textarea value={openedUser?.description || ""} readOnly />
             </FormControl>
           </div>
         </div>

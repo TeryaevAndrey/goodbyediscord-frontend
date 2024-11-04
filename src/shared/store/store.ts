@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./slices/user.slice";
+import userModalReducer from "./slices/userModal.slice";
 import {
   authApi,
   channelsApi,
@@ -12,6 +13,7 @@ import {
 export const store = configureStore({
   reducer: {
     user: userReducer,
+    userModal: userModalReducer,
 
     [authApi.reducerPath]: authApi.reducer,
     [meApi.reducerPath]: meApi.reducer,

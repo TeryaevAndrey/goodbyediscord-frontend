@@ -1,10 +1,10 @@
 import { Res } from "./main.types";
 
-export type Channel = {
+export type Channel<M> = {
   id: number;
-  users: number[];
+  members: M[];
   name: string;
-  owner: number;
+  channel_owner: M;
   description: string;
   avatar_url: string;
   time_create_channel: string;
@@ -23,11 +23,11 @@ export type CreateChannelFormData = {
   description?: string;
 };
 
-export type CreateChannelRes = Res<Channel>;
+export type CreateChannelRes = Res<Channel<number>>;
 
 export type GetUserChannelsParams = null;
 
-export type GetUserChannelsRes = Channel[];
+export type GetUserChannelsRes = Channel<number>[];
 
 export type UpdateChannelParams = {
   id: number;
@@ -37,7 +37,7 @@ export type UpdateChannelParams = {
   members?: number[];
 }
 
-export type UpdateChannelRes = Channel;
+export type UpdateChannelRes = Channel<number>;
 
 export type getChannelByIdParams = {
   id: number;

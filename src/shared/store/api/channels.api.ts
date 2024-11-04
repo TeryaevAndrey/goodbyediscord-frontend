@@ -7,6 +7,7 @@ import {
   GetUserChannelsRes,
   UpdateChannelParams,
   UpdateChannelRes,
+  User,
 } from "@/shared/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
@@ -49,7 +50,7 @@ export const channelsApi = createApi({
       providesTags: ["channels"],
     }),
 
-    getChannelById: query<Channel, getChannelByIdParams>({
+    getChannelById: query<Channel<User>, getChannelByIdParams>({
       query(params) {
         return {
           url: `/${params.id}/`,
@@ -57,8 +58,8 @@ export const channelsApi = createApi({
           headers: {
             Authorization: `Bearer ${Cookies.get("access")}`,
           },
-        }
-      }
+        };
+      },
     }),
 
     updateChannel: mutation<UpdateChannelRes, UpdateChannelParams>({

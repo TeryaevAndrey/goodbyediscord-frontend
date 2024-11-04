@@ -10,11 +10,23 @@ type Props = {
 };
 
 export const User: FC<Props> = ({ id, name }) => {
-  const [invite, { data: inviteData, error: inviteError }] =
+  const [invite, { data: inviteData, error: inviteError, isLoading }] =
     useInviteFriendshipMutation();
 
   const inviteHandler = () => {
     invite({ user_to: id });
+  };
+
+  const getButtonText = () => {
+    if (inviteData) {
+      return "Отправлено";
+    }
+
+    if (isLoading) {
+      return "Loading...";
+    }
+
+    return "Добавить в друзья";
   };
 
   useEffect(() => {
@@ -34,8 +46,13 @@ export const User: FC<Props> = ({ id, name }) => {
       userId={id}
       name={name}
       control={
-        <Button className="w-max" sizes="small" onClick={() => inviteHandler()}>
-          Добавить в друзья
+        <Button
+          className="w-max"
+          sizes="small"
+          onClick={() => inviteHandler()}
+          disabled={isLoading}
+        >
+          {getButtonText()}
         </Button>
       }
     />

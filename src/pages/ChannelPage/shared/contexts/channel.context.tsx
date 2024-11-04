@@ -1,5 +1,5 @@
 import { useGetChannelByIdQuery } from "@/shared/store/api";
-import { Channel } from "@/shared/types";
+import { Channel, User } from "@/shared/types";
 import {
   createContext,
   FC,
@@ -10,7 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 type ContextProps = {
-  channelData?: Channel;
+  channelData?: Channel<User>;
   isLoading: boolean;
   isFetching: boolean;
 };

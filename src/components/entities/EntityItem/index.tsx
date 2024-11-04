@@ -33,7 +33,7 @@ export const EntityItem: FC<Props> = ({
               <img className="object-cover" src={avatarUrl} />
             ) : (
               <div className="w-full h-full bg-blue-500 flex justify-center items-center">
-                {name[0]}
+                {name?.[0]}
               </div>
             )}
           </div>
