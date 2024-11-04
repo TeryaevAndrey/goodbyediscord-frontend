@@ -41,7 +41,7 @@ export const authApi = createApi({
           url: "/me/",
           method: "GET",
           headers: {
-            "Authorization": `Bearer ${Cookies.get("access")}`
+            Authorization: `Bearer ${Cookies.get("access")}`,
           },
         };
       },
@@ -56,6 +56,19 @@ export const authApi = createApi({
         };
       },
     }),
+
+    logout: mutation<{ message: string }, { refresh: string }>({
+      query: (body) => {
+        return {
+          url: "/logout/",
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${Cookies.get("access")}`,
+          },
+          body,
+        };
+      },
+    }),
   }),
 });
 
@@ -65,4 +78,5 @@ export const {
   useGetMeQuery,
   useLazyGetMeQuery,
   useGetSessionQuery,
+  useLogoutMutation,
 } = authApi;
