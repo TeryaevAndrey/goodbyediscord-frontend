@@ -6,6 +6,7 @@ import { Sidebar } from "../Sidebar";
 import { ChatBox } from "@/components/widgets";
 import { ChannelSidebar } from "../Sidebar/components";
 import {
+  AddChannelChatModal,
   AddChannelModal,
   AddFriendModal,
   AddMembersChannelModal,
@@ -41,6 +42,7 @@ export const ChannelLayout: FC<MainComponentProps> = ({
           channelMembers={channelData.members.map((member) => member.id)}
         />
       )}
+      <AddChannelChatModal />
     </div>
   );
 };

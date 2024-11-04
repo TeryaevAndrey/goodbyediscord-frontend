@@ -1,5 +1,6 @@
 import { Button, FormControl, TextField } from "@/components/ui";
 import { FormControlTitle } from "@/components/ui/FormControl/components";
+import { closeModal } from "@/shared/utils";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 export const AddChannelChatModal = () => {
@@ -9,8 +10,8 @@ export const AddChannelChatModal = () => {
     setName(e.target.value);
   };
 
-  const closeModal = () => {
-    document.getElementById("add_channel_chat_modal")?.close();
+  const closeModalHandler = () => {
+    closeModal("add_channel_chat_modal");
   };
 
   const formHandler = (e: FormEvent) => {
@@ -20,7 +21,7 @@ export const AddChannelChatModal = () => {
   return (
     <dialog id="add_channel_chat_modal" className="modal">
       <form className="modal-box" onSubmit={formHandler}>
-        <h3 className="font-bold text-lg">Добавление канала</h3>
+        <h3 className="font-bold text-lg">Добавление чата (голосовой)</h3>
 
         <div className="mt-6 flex items-center gap-4">
           <FormControl>
@@ -33,14 +34,16 @@ export const AddChannelChatModal = () => {
           </FormControl>
         </div>
 
-        <div className="modal-action">
-          <div className="flex items-center gap-4 flex-wrap">
-            <Button variant="secondary" type="button" onClick={closeModal}>
+        <div className="modal-action w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+            <Button
+              variant="secondary"
+              type="button"
+              onClick={closeModalHandler}
+            >
               Close
             </Button>
-            <Button className="w-max" type="submit">
-              Save
-            </Button>
+            <Button type="submit">Save</Button>
           </div>
         </div>
       </form>

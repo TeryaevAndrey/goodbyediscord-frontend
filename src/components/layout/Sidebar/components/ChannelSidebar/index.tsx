@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { ChatWrapper } from "../ChatWrapper";
 import { ChatUsersList } from "../ChatUsersList";
 import { IoIosAdd } from "react-icons/io";
+import { openModal } from "@/shared/utils";
 
 export const ChannelSidebar = () => {
   const navigate = useNavigate();
@@ -35,7 +36,10 @@ export const ChannelSidebar = () => {
           <div className="mb-2 px-4 flex justify-between items-center">
             <p className="text-sm text-base-content/50">Голосовые чаты</p>
 
-            <button title="Добавить голосовой чат">
+            <button
+              title="Добавить голосовой чат"
+              onClick={() => openModal("add_channel_chat_modal")}
+            >
               <IoIosAdd className="fill-base-content" size={18} />
             </button>
           </div>
@@ -70,7 +74,10 @@ export const ChannelSidebar = () => {
           <div className="mb-2 px-4 flex justify-between items-center">
             <p className="text-sm text-base-content/50">Текстовые чаты</p>
 
-            <button title="Добавить голосовой чат">
+            <button
+              title="Добавить голосовой чат"
+              onClick={() => openModal("add_channel_chat_modal")}
+            >
               <IoIosAdd className="fill-base-content" size={18} />
             </button>
           </div>
