@@ -1,8 +1,33 @@
 import { Button, ThemeButton } from "@/components/ui";
+import { useLogoutMutation } from "@/shared/store/api";
+import Cookies from "js-cookie";
+import { useEffect } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaRegKeyboard } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 export const SettingsModal = () => {
+  const [logout, { data: logoutData, error: logoutError }] =
+    useLogoutMutation();
+
+  useEffect(() => {
+    if (!logoutData) return;
+
+    toast.success("Вы вышли из системы");
+
+    const timeout = setTimeout(() => {
+      window.location.reload();
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, [logoutData]);
+
+  useEffect(() => {
+    if (!logoutError) return;
+
+    toast.error("Ошибка");
+  }, [logoutError]);
+
   return (
     <dialog id="settings_modal" className="modal">
       <div className="modal-box min-h-[400px]">
@@ -26,7 +51,15 @@ export const SettingsModal = () => {
 
           <ThemeButton />
 
-          <Button className="bg-base-100" variant="transparent">
+          <Button
+            className="bg-base-100"
+            variant="transparent"
+            onClick={() => {
+              logout({ refresh: Cookies.get("refresh") as string });
+              Cookies.remove("access");
+              Cookies.remove("refresh");
+            }}
+          >
             Выход
             <FaRegUserCircle className="text-base-content" size={20} />
           </Button>

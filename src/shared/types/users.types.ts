@@ -1,7 +1,14 @@
 export type User = {
-  login: string;
+  id: number;
   email: string;
-  name: string;
-  time_create: string;
-  time_update: string;
+  username: string;
+  description: string | null;
+  created_at: string;
+  updated_at: string;
 }
+
+export type SearchUsersParams = {
+  q: string;
+}
+
+export type SearchUsersRes = User[]

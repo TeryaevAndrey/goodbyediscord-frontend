@@ -1,0 +1,20 @@
+.root {
+  @apply flex items-center gap-4 ease-linear duration-200;
+}
+
+.pointer {
+  @apply hover:bg-base-200 cursor-pointer py-1;
+}
+
+.small .title {
+  @apply text-sm;
+}
+
+.text {
+  @apply text-xs text-base-content/50;
+}
+
+.average .title,
+.big .title {
+  @apply text-base;
+}

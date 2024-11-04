@@ -1,0 +1,27 @@
+.root {
+  @apply avatar online cursor-pointer;
+}
+
+.imgWrapper {
+  @apply rounded-full !flex justify-center items-center bg-orange-500;
+}
+
+.root.small .imgWrapper {
+  @apply w-8;
+}
+
+.root.average .imgWrapper {
+  @apply w-10;
+}
+
+.root.big .imgWrapper {
+  @apply w-12;
+}
+
+.root.extraBig .imgWrapper {
+  @apply w-28;
+}
+
+.img {
+  @apply object-cover flex justify-center items-center bg-orange-500 w-full h-full;
+}

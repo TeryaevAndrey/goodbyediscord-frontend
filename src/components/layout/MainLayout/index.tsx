@@ -8,7 +8,9 @@ import { ChatBox } from "@/components/widgets";
 import {
   AddChannelModal,
   AddFriendModal,
+  AddMembersChannelModal,
   SettingsModal,
+  UserModal,
 } from "@/components/modals";
 
 export const MainLayout: FC<MainComponentProps> = ({ children, className }) => {
@@ -26,6 +28,9 @@ export const MainLayout: FC<MainComponentProps> = ({ children, className }) => {
       <AddFriendModal />
       <AddChannelModal />
       <SettingsModal />
+      <AddMembersChannelModal />
+      <AddMembersChannelModal type="create" withMiss={true} />
+      <UserModal />
     </div>
   );
 };

@@ -1,17 +1,24 @@
-import { AuthRes, SignInParams, SignUpParams, User } from "@/shared/types";
+import {
+  AuthRes,
+  GetMeRes,
+  SignInParams,
+  SignUpParams,
+  User,
+} from "@/shared/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import Cookies from "js-cookie";
 
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_API!}/auth`,
+    baseUrl: `${import.meta.env.VITE_API!}/user_auth`,
   }),
 
   endpoints: ({ query, mutation }) => ({
     signIn: mutation<AuthRes, SignInParams>({
-      query: (body) => {
+      query(body) {
         return {
-          url: "/sign-in/",
+          url: "/login/",
           method: "POST",
           body,
         };
@@ -19,24 +26,57 @@ export const authApi = createApi({
     }),
 
     signUp: mutation<AuthRes, SignUpParams>({
-      query: (body) => {
+      query(body) {
         return {
-          url: "/sign-up/",
+          url: "/register/",
           method: "POST",
           body,
         };
       },
     }),
 
-    getMe: query<User, null>({
+    getMe: query<GetMeRes, null>({
       query: () => {
         return {
-          url: "/user-info/",
-          method: "GET"
-        }
-      }
-    })
+          url: "/me/",
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${Cookies.get("access")}`,
+          },
+        };
+      },
+    }),
+
+    getSession: query<User, null>({
+      query: () => {
+        return {
+          url: "/session/",
+          method: "GET",
+          credentials: "include",
+        };
+      },
+    }),
+
+    logout: mutation<{ message: string }, { refresh: string }>({
+      query: (body) => {
+        return {
+          url: "/logout/",
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${Cookies.get("access")}`,
+          },
+          body,
+        };
+      },
+    }),
   }),
 });
 
-export const { useSignInMutation, useSignUpMutation, useGetMeQuery } = authApi;
+export const {
+  useSignInMutation,
+  useSignUpMutation,
+  useGetMeQuery,
+  useLazyGetMeQuery,
+  useGetSessionQuery,
+  useLogoutMutation,
+} = authApi;

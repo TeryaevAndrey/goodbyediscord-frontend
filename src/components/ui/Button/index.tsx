@@ -1,5 +1,5 @@
 import { cva, VariantProps } from "class-variance-authority";
-import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from "react";
+import { ButtonHTMLAttributes, DetailedHTMLProps, FC, forwardRef } from "react";
 import styles from "./styles.module.scss";
 import { cn } from "@/shared/utils";
 
@@ -9,6 +9,7 @@ const variants = cva(styles.root, {
       primary: styles.primary,
       secondary: styles.secondary,
       transparent: styles.transparent,
+      error: styles.error,
     },
 
     sizes: {
@@ -35,20 +36,16 @@ interface Props
     >,
     VariantProps<typeof variants> {}
 
-export const Button: FC<Props> = ({
-  children,
-  className,
-  variant,
-  sizes,
-  mode,
-  ...props
-}) => {
-  return (
-    <button
-      className={cn(variants({ variant, sizes, mode }), className)}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
+export const Button: FC<Props> = forwardRef(
+  ({ children, className, variant, sizes, mode, ...props }, ref) => {
+    return (
+      <button
+        className={cn(variants({ variant, sizes, mode }), className)}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  }
+);

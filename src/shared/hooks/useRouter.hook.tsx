@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { paths } from "../data";
 import { useAppSelector } from "../types";
 import { user } from "../store/slices";
@@ -28,6 +28,8 @@ export const useRouter = () => {
             />
           );
         })}
+
+        <Route path="/*" element={<Navigate to="/auth/sign-in" />} />
       </Routes>
     );
   }
@@ -49,6 +51,8 @@ export const useRouter = () => {
           />
         );
       })}
+
+      <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
   );
 };

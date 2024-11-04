@@ -3,3 +3,6 @@ export * from "./main.types";
 export * from "./auth.types";
 export * from "./users.types";
 export * from "./me.types";
+export * from "./channels.types";
+export * from "./drawers.types";
+export * from "./friendships.types";

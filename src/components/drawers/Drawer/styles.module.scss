@@ -1,0 +1,15 @@
+.root {
+  @apply bg-base-300 h-[100dvh];
+}
+
+.small {
+  @apply min-w-[250px];
+}
+
+.average {
+  @apply min-w-[300px];
+}
+
+.big {
+  @apply min-w-[350px];
+}

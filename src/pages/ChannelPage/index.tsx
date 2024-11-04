@@ -1,5 +1,15 @@
 import { ChannelScreen } from "@/screens";
+import {
+  ChannelContextProvider,
+  DrawersContextProvider,
+} from "./shared/contexts";
 
 export const ChannelPage = () => {
-  return <ChannelScreen />;
+  return (
+    <ChannelContextProvider>
+      <DrawersContextProvider>
+        <ChannelScreen />
+      </DrawersContextProvider>
+    </ChannelContextProvider>
+  );
 };
