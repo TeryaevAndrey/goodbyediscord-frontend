@@ -2,13 +2,14 @@ import {
   ActiveChatUser,
   BackButton,
   Button,
-  Search,
   TextChat,
   VoiceChat,
 } from "@/components/ui";
 import { useNavigate } from "react-router-dom";
 import { ChatWrapper } from "../ChatWrapper";
 import { ChatUsersList } from "../ChatUsersList";
+import { IoIosAdd } from "react-icons/io";
+import { openModal } from "@/shared/utils";
 
 export const ChannelSidebar = () => {
   const navigate = useNavigate();
@@ -21,19 +22,25 @@ export const ChannelSidebar = () => {
         <Button
           sizes="small"
           onClick={() =>
-            document.getElementById("add_friend_modal")?.showModal()
+            document.getElementById("add_members_channel_modal")?.showModal()
           }
         >
-          Добавить друга
+          Добавить участника
         </Button>
-        <Search />
       </div>
 
       <div className="flex flex-col gap-6 mt-6 overflow-y-auto h-full max-h-[calc(100dvh-190px)]">
         <div className="flex flex-col">
-          <p className="text-sm text-base-content/50 px-6 mb-2">
-            Голосовые чаты
-          </p>
+          <div className="mb-2 px-4 flex justify-between items-center">
+            <p className="text-sm text-base-content/50">Голосовые чаты</p>
+
+            <button
+              title="Добавить голосовой чат"
+              onClick={() => openModal("add_channel_chat_modal")}
+            >
+              <IoIosAdd className="fill-base-content" size={18} />
+            </button>
+          </div>
 
           <ChatWrapper>
             <VoiceChat />
@@ -62,9 +69,16 @@ export const ChannelSidebar = () => {
         </div>
 
         <div className="flex flex-col">
-          <p className="text-sm text-base-content/50 px-6 mb-2">
-            Текстовые чаты
-          </p>
+          <div className="mb-2 px-4 flex justify-between items-center">
+            <p className="text-sm text-base-content/50">Текстовые чаты</p>
+
+            <button
+              title="Добавить голосовой чат"
+              onClick={() => openModal("add_channel_chat_modal")}
+            >
+              <IoIosAdd className="fill-base-content" size={18} />
+            </button>
+          </div>
 
           <TextChat />
           <TextChat />

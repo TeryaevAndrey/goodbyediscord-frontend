@@ -6,5 +6,9 @@ export const FormControl: FC<MainComponentProps> = ({
   children,
   className,
 }) => {
-  return <div className={cn("flex flex-col gap-1", className)}>{children}</div>;
+  return (
+    <div className={cn("flex flex-col gap-1 w-full", className)}>
+      {children}
+    </div>
+  );
 };

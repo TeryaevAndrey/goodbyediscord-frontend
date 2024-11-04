@@ -1,0 +1,7 @@
+.root {
+  @apply flex items-center gap-4 justify-between bg-base-200 p-4 rounded-xl;
+}
+
+.controls {
+  @apply flex items-center gap-1;
+}

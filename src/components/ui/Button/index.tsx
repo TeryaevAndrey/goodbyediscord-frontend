@@ -10,6 +10,7 @@ const variants = cva(styles.root, {
       secondary: styles.secondary,
       transparent: styles.transparent,
       error: styles.error,
+      success: styles.success,
     },
 
     sizes: {

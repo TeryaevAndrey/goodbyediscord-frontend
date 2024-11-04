@@ -21,8 +21,6 @@ export const MainLayout: FC<MainComponentProps> = ({ children, className }) => {
         <UserSidebar />
       </Sidebar>
 
-      <ChatBox />
-
       {children}
 
       <AddFriendModal />

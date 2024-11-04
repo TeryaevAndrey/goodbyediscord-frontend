@@ -1,3 +1,5 @@
+import { ChatBox } from "@/components/widgets";
+
 export const HomeScreen = () => {
-  return <div></div>;
+  return <ChatBox />;
 };
